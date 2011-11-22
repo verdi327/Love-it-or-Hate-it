@@ -1,0 +1,22 @@
+<h1>There Are Lovers and Haters</h1>
+<h3>Find Out What People Are Saying About Anything</h3>
+
+<%= form_tag searches_url, method: :get do %>
+<%= text_field_tag :term %>
+<%= submit_tag "Search" %>
+<% end %>
+
+
+<div id="hate">
+<h2>Hate It</h2>
+	<% Twitter.search("i hate the #{@term}", rpp: 10).each do |tweet|%>
+		<li><%=  tweet.text%></li><br />
+	<% end %>
+</div>
+
+<div id="love">
+	<h2>Love It</h2>
+	<% Twitter.search("i love the #{@term}", rpp: 10).each do |tweet|%>
+		<li><%=  tweet.text%></li><br />
+	<% end %>
+</div>
